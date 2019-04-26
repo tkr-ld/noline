@@ -1,0 +1,12 @@
+= form_with model: shop, local: true do |f|
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control', id: 'shop_name'
+  .form-group
+    = f.label :place
+    = f.text_field :place, class: 'form-control', id: 'shop_place'
+  .form-group
+    = f.label :wait_time
+    br
+    = f.select :wait_time, [["10分",10],["20分",20],["30分",30],["40分",40],["50分",50],["60分",60],["70分",70],["80分",80],["90分",90],["100分",100],["110分",110],["120分",120]],{} ,class: 'form-control custom-select', id: 'shop_wait_time'
+  = f.submit nil, class: 'btn btn-primary'

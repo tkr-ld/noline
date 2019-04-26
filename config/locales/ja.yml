@@ -17,6 +17,7 @@ ja:
         wait_time: 待ち時間
         created_at: 登録日時
         updated_at: 更新日時
+        minute: 分
       user:
         name: 名前
         email: メールアドレス

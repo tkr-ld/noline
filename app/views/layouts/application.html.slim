@@ -11,4 +11,6 @@ html
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       navbar-brand = link_to 'Noline', root_path
     .container
+      - if flash.notice.present?
+        .alert.alert-success= flash.notice
       = yield

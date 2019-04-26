@@ -1,2 +1,19 @@
 h1 Shops#index
-p Find me in app/views/shops/index.html.slim
+
+= link_to 'お店の追加', new_shop_path, class: 'btn btn-primary'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Shop.human_attribute_name(:name)
+      th= Shop.human_attribute_name(:place)
+      th= Shop.human_attribute_name(:wait_time)
+    tbody
+      - @shops.each do |shop|
+        tr
+          td= link_to shop.name, shop
+          td= shop.place
+          td
+            = shop.wait_time
+            = Shop.human_attribute_name(:minute)
