@@ -5,7 +5,11 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    @reservations = @shop.reservations.all
+    unless current_user.shops.find_by(id: params[:id])
+      redirect_to new_shop_reservation_path(@shop)
+    else
+      @reservations = @shop.reservations.all
+    end
   end
 
   def new
@@ -43,8 +47,12 @@ class ShopsController < ApplicationController
 
   private
 
+  def match_user
+    unless current_user.shops.find_by(id: params[:id])
+    end
+  end
+
   def shop_params
-    binding.pry
     params.require(:shop).permit(:name, :place, :wait_time)
   end
 end

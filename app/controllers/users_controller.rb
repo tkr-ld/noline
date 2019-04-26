@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :login_required
 
   def new
     @user = User.new
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to root_path, notice: "ユーザー「#{@user.name}を登録しました。」"
+      redirect_to root_path, notice: "ユーザー「#{@user.name}」を登録しました。"
     else
       render :new
     end
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to admin_user_path(@user), notice: "ユーザー「#{@user.name}を更新しました。」"
+      redirect_to admin_user_path(@user), notice: "ユーザー「#{@user.name}」を更新しました。"
     else
       render :new
     end
