@@ -12,23 +12,29 @@ class ShopsController < ApplicationController
   end
 
   def create
-    shop = Shop.new(shop_params)
-    shop.save!
-    redirect_to shop_url(shop), notice: "#{shop.name}を登録しました"
+    @shop = current_user.shops.new(shop_params)
+    if @shop.save
+      redirect_to shop_url(@shop), notice: "#{@shop.name}を登録しました"
+    else
+      render :new
+    end
   end
 
   def edit
-    @shop = Shop.find(params[:id])
+    @shop = current_user.shops.find(params[:id])
   end
 
   def update
-    shop = Shop.find(params[:id])
-    shop.update!(shop_params)
-    redirect_to shop_url(shop), notice: "#{shop.name}を更新しました"
+    @shop = current_user.shops.find(params[:id])
+    if @shop.update(shop_params)
+      redirect_to shop_url(@shop), notice: "#{@shop.name}を更新しました"
+    else
+      render :new
+    end
   end
 
   def destroy
-    shop = Shop.find(params[:id])
+    @shop = current_user.shops.find(params[:id])
     shop.destroy
     redirect_to shops_url, notice: "#{shop.name}を削除しました"
   end
