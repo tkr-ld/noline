@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reserve_on: 2019-04-26 15:52:48
+  people_number: 1
+  user: one
+  shop: one
+
+two:
+  reserve_on: 2019-04-26 15:52:48
+  people_number: 1
+  user: two
+  shop: two

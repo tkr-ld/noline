@@ -3,4 +3,5 @@ class Shop < ApplicationRecord
   validates :wait_time, presence: true
 
   belongs_to :user
+  has_many :reservations
 end
