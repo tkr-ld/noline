@@ -1,10 +1,13 @@
-h1 Shops#show
+h1= @shop.name
+
+br
+
+strong
+  | 設定予約時間：
+  = @shop.set_expected.to_s(:ja)
 
 table.table.table-hover
   tbody
-    tr
-      th= Shop.human_attribute_name(:name)
-      td= @shop.name
     tr
       th= Shop.human_attribute_name(:place)
       td= @shop.place
@@ -17,6 +20,19 @@ table.table.table-hover
   = f.submit nil, class: 'btn btn-primary'
 
 br
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Reservation.human_attribute_name(:reserve_on)
+      th= User.human_attribute_name(:name)
+      th= Reservation.human_attribute_name(:people_number)
+    tbody
+      - @reservations.each do |reservation|
+        tr
+          td= reservation.reserve_on.to_s(:ja)
+          td= reservation.user.name
+          td= reservation.people_number
 
 = link_to '詳細情報の編集', edit_shop_path(@shop), class: 'btn btn-success mr-3'
 = link_to 'お店の削除', @shop, method: :delete, data: { confirm: "#{@shop.name}を削除します。よろしいですか。" }, class: 'btn btn-danger mr-3'

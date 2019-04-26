@@ -6,4 +6,9 @@ class Reservation < ApplicationRecord
 
   belongs_to :user
   belongs_to :shop
+
+  def reserve(shop)
+    self.shop_id = shop.id
+    self.reserve_on = shop.set_expected
+  end
 end

@@ -4,4 +4,8 @@ class Shop < ApplicationRecord
 
   belongs_to :user
   has_many :reservations
+
+  def set_expected
+    DateTime.now + Rational(wait_time, 24 * 60)
+  end
 end

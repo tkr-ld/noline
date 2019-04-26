@@ -5,10 +5,12 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @reservations = @shop.reservations.all
   end
 
   def new
     @shop = Shop.new
+    @reservation = Reservation.new
   end
 
   def create
@@ -42,6 +44,7 @@ class ShopsController < ApplicationController
   private
 
   def shop_params
+    binding.pry
     params.require(:shop).permit(:name, :place, :wait_time)
   end
 end
