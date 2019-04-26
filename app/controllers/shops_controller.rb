@@ -1,4 +1,6 @@
 class ShopsController < ApplicationController
+  before_action :set_shop, only: [:edit, :update, :destroy]
+
   def index
     @shops = Shop.where.not(user_id: current_user.id)
   end
@@ -31,11 +33,9 @@ class ShopsController < ApplicationController
   end
 
   def edit
-    @shop = current_user.shops.find(params[:id])
   end
 
   def update
-    @shop = current_user.shops.find(params[:id])
     if @shop.update(shop_params)
       redirect_to shop_url(@shop), notice: "#{@shop.name}を更新しました"
     else
@@ -44,12 +44,15 @@ class ShopsController < ApplicationController
   end
 
   def destroy
-    @shop = current_user.shops.find(params[:id])
     shop.destroy
     redirect_to shops_url, notice: "#{shop.name}を削除しました"
   end
 
   private
+
+  def set_shop
+    @shop = current_user.shops.find(params[:id])
+  end
 
   def shop_params
     params.require(:shop).permit(:name, :place, :wait_time)
