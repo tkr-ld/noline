@@ -47,11 +47,6 @@ class ShopsController < ApplicationController
 
   private
 
-  def match_user
-    unless current_user.shops.find_by(id: params[:id])
-    end
-  end
-
   def shop_params
     params.require(:shop).permit(:name, :place, :wait_time)
   end
