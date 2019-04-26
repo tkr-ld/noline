@@ -1,6 +1,10 @@
 class ShopsController < ApplicationController
   def index
-    @shops = Shop.all
+    @shops = Shop.where.not(user_id: current_user.id)
+  end
+
+  def my_index
+    @shops = Shop.where(user_id: current_user.id)
   end
 
   def show
