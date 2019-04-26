@@ -9,6 +9,6 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand Noline
+      navbar-brand = link_to 'Noline', root_path
     .container
       = yield
