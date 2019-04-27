@@ -27,12 +27,18 @@ table.table.table-hover
       th= Reservation.human_attribute_name(:reserve_on)
       th= User.human_attribute_name(:name)
       th= Reservation.human_attribute_name(:people_number)
+      th= Reservation.human_attribute_name(:status)
+      th
     tbody
       - @reservations.each do |reservation|
         tr
           td= reservation.reserve_on.to_s(:ja)
           td= reservation.user.name
           td= reservation.people_number
+          td= reservation.status_i18n
+          td
+            - if reservation.yet?
+              = link_to '入店', shop_reservation_enter_path(@shop, reservation), method: :patch, class: 'btn btn-primary mr-3'
 
 = link_to '詳細情報の編集', edit_shop_path(@shop), class: 'btn btn-success mr-3'
 = link_to 'お店の削除', @shop, method: :delete, data: { confirm: "#{@shop.name}を削除します。よろしいですか。" }, class: 'btn btn-danger mr-3'

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get :my_index, on: :collection
     resources :reservations, only: [:show, :new, :create, :destroy] do
       patch :cancel
+      patch :enter
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

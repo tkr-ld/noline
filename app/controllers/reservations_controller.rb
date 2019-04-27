@@ -30,10 +30,19 @@ class ReservationsController < ApplicationController
     redirect_to root_url, notice: "#{reservation.shop.name}の予約をキャンセルしました"
   end
 
+  def enter
+    reservation = Reservation.find(params[:reservation_id])
+    reservation.enter!
+    redirect_to shop_path(reservation.shop), notice: "#{reservation.user.name}が入店しました"
+  end
+
   private
 
   def reservation_params
     params.require(:reservation).permit(:people_number)
+  end
+
+  def correct_user
   end
 
   def different_user
