@@ -2,6 +2,14 @@ h1= shop.name
 
 br
 
+h3
+  = shop.reservations.yet.count
+  | 組
+  = shop.total_people_number
+  | 人待ち
+
+br
+
 = link_to 'リセット', reset_shop_path(shop), method: :delete, data: { confirm: "#{shop.name}の予約状況をリセットします。よろしいですか？" }, class: 'btn btn-danger mr-3'
 
 br

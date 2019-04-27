@@ -1,9 +1,10 @@
+= render partial: 'wait_number', locals: { shop: @shop }
+
 h3 
   | 今予約すると予約時間は
   strong = @shop.set_expected.to_s(:ja)
   | です
   
-
 = form_with model: @reservation, url: [@shop, @reservation], local: true do |f|
   .form-group
     = f.label :people_number, '人数'

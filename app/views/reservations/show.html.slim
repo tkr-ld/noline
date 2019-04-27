@@ -1,3 +1,3 @@
-h1 test
+= render partial: 'wait_number', locals: { shop: @shop }
 
 = link_to '予約のキャンセル', cancel_shop_reservation_path(@shop, @reservation), method: :patch, data: { confirm: "#{@shop.name}の予約をキャンセルします。よろしいですか。" }, class: 'btn btn-danger mr-3'
