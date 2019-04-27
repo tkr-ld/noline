@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: [:edit, :update, :destroy]
+  before_action :shop_owner?, only: [:show, :entered, :canceled]
 
   def index
     @shops = Shop.where.not(user_id: current_user.id)
@@ -10,30 +11,12 @@ class ShopsController < ApplicationController
   end
 
   def show
-    @shop = Shop.find(params[:id])
-    unless current_user.shops.find_by(id: params[:id])
-      redirect_to new_shop_reservation_path(@shop)
-    else
-      @reservations = @shop.reservations.all
-    end
   end
 
   def entered
-    @shop = Shop.find(params[:id])
-    unless current_user.shops.find_by(id: params[:id])
-      redirect_to new_shop_reservation_path(@shop)
-    else
-      @reservations = @shop.reservations.all
-    end
   end
 
   def canceled
-    @shop = Shop.find(params[:id])
-    unless current_user.shops.find_by(id: params[:id])
-      redirect_to new_shop_reservation_path(@shop)
-    else
-      @reservations = @shop.reservations.all
-    end
   end
 
   def new
@@ -70,6 +53,15 @@ class ShopsController < ApplicationController
 
   def set_shop
     @shop = current_user.shops.find(params[:id])
+  end
+
+  def shop_owner?
+    @shop = Shop.find(params[:id])
+    unless current_user.shops.find_by(id: params[:id])
+      redirect_to new_shop_reservation_path(@shop)
+    else
+      @reservations = @shop.reservations.all
+    end
   end
 
   def shop_params
