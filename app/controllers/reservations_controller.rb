@@ -1,8 +1,8 @@
 class ReservationsController < ApplicationController
   before_action :different_user, only: [:new, :show]
+  before_action :set_shop, only: [:new, :show, :create]
 
   def new
-    @shop = Shop.find(params[:shop_id])
     reservation = current_user.reservations.find_by(shop_id: params[:shop_id])
     #未予約か予約をキャンセルした場合のみ、予約できるようにする
     if reservation && !(reservation.cancel?)
@@ -12,20 +12,20 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @shop = Shop.find(params[:shop_id])
     @reservation = current_user.reservations.find(params[:id])
   end
 
   def create
-    shop = Shop.find(params[:shop_id])
     reservation = current_user.reservations.new(reservation_params)
-    reservation.reserve(shop)
+    reservation.reserve(@shop)
     reservation.save!
-    redirect_to root_url, notice: "#{shop.name}の予約を#{reservation.reserve_on.to_s(:ja)}で予約をお取りしました"
+    redirect_to root_url, notice: "#{@shop.name}の予約を#{reservation.reserve_on.to_s(:ja)}で予約をお取りしました"
   end
 
   def cancel
-    reservation = current_user.reservations.find(params[:id])
+    unless reservation = current_user.reservations.find(params[:id])
+      redirect_to root_url
+    end
     reservation.cancel!
     redirect_to root_url, notice: "#{reservation.shop.name}の予約をキャンセルしました"
   end
@@ -38,16 +38,17 @@ class ReservationsController < ApplicationController
 
   private
 
-  def reservation_params
-    params.require(:reservation).permit(:people_number)
-  end
-
-  def correct_user
+  def set_shop
+    @shop = Shop.find(params[:shop_id])
   end
 
   def different_user
     if current_user.shops.find_by(id: params[:shop_id])
       redirect_to root_url
     end
+  end
+
+  def reservation_params
+    params.require(:reservation).permit(:people_number)
   end
 end
