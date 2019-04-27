@@ -4,13 +4,16 @@ class ReservationsController < ApplicationController
   def new
     @shop = Shop.find(params[:shop_id])
     reservation = current_user.reservations.find_by(shop_id: params[:shop_id])
-    if reservation
+    #未予約か予約をキャンセルした場合のみ、予約できるようにする
+    if reservation && !(reservation.cancel?)
       redirect_to shop_reservation_path(@shop, reservation)
     end
     @reservation = Reservation.new
   end
 
   def show
+    @shop = Shop.find(params[:shop_id])
+    @reservation = current_user.reservations.find(params[:id])
   end
 
   def create
@@ -19,6 +22,12 @@ class ReservationsController < ApplicationController
     reservation.reserve(shop)
     reservation.save!
     redirect_to root_url, notice: "#{shop.name}の予約を#{reservation.reserve_on.to_s(:ja)}で予約をお取りしました"
+  end
+
+  def cancel
+    reservation = current_user.reservations.find(params[:reservation_id])
+    reservation.cancel!
+    redirect_to root_url, notice: "#{reservation.shop.name}の予約をキャンセルしました"
   end
 
   private
