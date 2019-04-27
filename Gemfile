@@ -68,3 +68,5 @@ gem 'html2slim'
 gem 'bootstrap'
 
 gem 'enum_help'
+
+gem "aws-sdk-s3", require: false
