@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :login_required
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def new
@@ -36,6 +37,12 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def correct_user
+    unless current_user == User.find(params[:id])
+      redirect_to root_url
+    end
   end
 
   def user_params
