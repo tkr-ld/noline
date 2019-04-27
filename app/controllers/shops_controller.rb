@@ -1,5 +1,5 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: [:edit, :update, :destroy]
+  before_action :set_shop, only: [:edit, :update]
   before_action :shop_owner?, only: [:show, :entered, :canceled]
 
   def index
@@ -45,8 +45,15 @@ class ShopsController < ApplicationController
   end
 
   def destroy
+    shop = current_user.shops.find(params[:id])
     shop.destroy
     redirect_to shops_url, notice: "#{shop.name}を削除しました"
+  end
+
+  def reset
+    shop = current_user.shops.find(params[:id])
+    shop.delete_all_reservation
+    redirect_to shop_url(shop), notice: "#{shop.name}の予約状況をリセットしました"
   end
 
   private

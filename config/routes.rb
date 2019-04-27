@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       get :canceled
       get :entered
+      delete :reset
     end
     collection do
       get :my_index

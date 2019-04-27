@@ -2,6 +2,10 @@ h1= shop.name
 
 br
 
+= link_to 'リセット', reset_shop_path(shop), method: :delete, data: { confirm: "#{shop.name}の予約状況をリセットします。よろしいですか？" }, class: 'btn btn-danger mr-3'
+
+br
+
 strong
   | 設定予約時間：
   = shop.set_expected.to_s(:ja)
