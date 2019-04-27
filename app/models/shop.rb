@@ -1,4 +1,6 @@
 class Shop < ApplicationRecord
+  has_one_attached :image
+
   validates :name, presence: true, uniqueness: true
   validates :wait_time, presence: true
 

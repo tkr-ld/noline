@@ -77,6 +77,6 @@ class ShopsController < ApplicationController
   end
 
   def shop_params
-    params.require(:shop).permit(:name, :place, :wait_time)
+    params.require(:shop).permit(:name, :place, :image, :wait_time)
   end
 end

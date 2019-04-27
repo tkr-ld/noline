@@ -14,6 +14,7 @@ ja:
         id: ID
         name: 店名
         place: 所在地
+        image: 写真
         wait_time: 待ち時間(分)
         created_at: 登録日時
         updated_at: 更新日時
