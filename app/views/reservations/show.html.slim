@@ -1,3 +1,3 @@
 h1 test
 
-= link_to '予約のキャンセル', shop_reservation_cancel_path(@shop, @reservation), method: :patch, data: { confirm: "#{@shop.name}の予約をキャンセルします。よろしいですか。" }, class: 'btn btn-danger mr-3'
+= link_to '予約のキャンセル', cancel_shop_reservation_path(@shop, @reservation), method: :patch, data: { confirm: "#{@shop.name}の予約をキャンセルします。よろしいですか。" }, class: 'btn btn-danger mr-3'

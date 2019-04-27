@@ -21,24 +21,42 @@ table.table.table-hover
 
 br
 
-table.table.table-hover
-  thead.thead-default
-    tr
-      th= Reservation.human_attribute_name(:reserve_on)
-      th= User.human_attribute_name(:name)
-      th= Reservation.human_attribute_name(:people_number)
-      th= Reservation.human_attribute_name(:status)
-      th
-    tbody
-      - @reservations.each do |reservation|
-        tr
-          td= reservation.reserve_on.to_s(:ja)
-          td= reservation.user.name
-          td= reservation.people_number
-          td= reservation.status_i18n
-          td
-            - if reservation.yet?
-              = link_to '入店', shop_reservation_enter_path(@shop, reservation), method: :patch, class: 'btn btn-primary mr-3'
+.col-xs-8
+  ul.nav.nav-tabs
+    li.nav-item
+      = link_to shop_path(@shop), class: "nav-link #{'active' if current_page?(shop_path(@shop))}" do
+        | 未入店
+        span.badge.badge-primary
+          = @shop.reservations.yet.count
+    li.nav-item
+      = link_to entered_shop_path(@shop), class: "nav-link #{'active' if current_page?(entered_shop_path(@shop))}" do
+        | 入店済み
+        span.badge.badge-dark
+          = @shop.reservations.enter.count
+    li.nav-item
+      = link_to canceled_shop_path(@shop), class: "nav-link #{'active' if current_page?(canceled_shop_path(@shop))}" do
+        | キャンセル
+        span.badge.badge-danger
+          = @shop.reservations.cancel.count
+    
+  table.table.table-hover
+    thead.thead-default
+      tr
+        th= Reservation.human_attribute_name(:reserve_on)
+        th= User.human_attribute_name(:name)
+        th= Reservation.human_attribute_name(:people_number)
+        th= Reservation.human_attribute_name(:status)
+        th
+      tbody
+        - @reservations.yet.each do |reservation|
+          tr
+            td= reservation.reserve_on.to_s(:ja)
+            td= reservation.user.name
+            td= reservation.people_number
+            td= reservation.status_i18n
+            td
+              - if reservation.yet?
+                = link_to '入店', enter_shop_reservation_path(@shop, reservation), method: :patch, class: 'btn btn-primary mr-3'
 
-= link_to '詳細情報の編集', edit_shop_path(@shop), class: 'btn btn-success mr-3'
-= link_to 'お店の削除', @shop, method: :delete, data: { confirm: "#{@shop.name}を削除します。よろしいですか。" }, class: 'btn btn-danger mr-3'
+  = link_to '詳細情報の編集', edit_shop_path(@shop), class: 'btn btn-success mr-3'
+  = link_to 'お店の削除', @shop, method: :delete, data: { confirm: "#{@shop.name}を削除します。よろしいですか。" }, class: 'btn btn-danger mr-3'

@@ -25,13 +25,13 @@ class ReservationsController < ApplicationController
   end
 
   def cancel
-    reservation = current_user.reservations.find(params[:reservation_id])
+    reservation = current_user.reservations.find(params[:id])
     reservation.cancel!
     redirect_to root_url, notice: "#{reservation.shop.name}の予約をキャンセルしました"
   end
 
   def enter
-    reservation = Reservation.find(params[:reservation_id])
+    reservation = Reservation.find(params[:id])
     reservation.enter!
     redirect_to shop_path(reservation.shop), notice: "#{reservation.user.name}が入店しました"
   end

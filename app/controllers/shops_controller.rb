@@ -18,6 +18,24 @@ class ShopsController < ApplicationController
     end
   end
 
+  def entered
+    @shop = Shop.find(params[:id])
+    unless current_user.shops.find_by(id: params[:id])
+      redirect_to new_shop_reservation_path(@shop)
+    else
+      @reservations = @shop.reservations.all
+    end
+  end
+
+  def canceled
+    @shop = Shop.find(params[:id])
+    unless current_user.shops.find_by(id: params[:id])
+      redirect_to new_shop_reservation_path(@shop)
+    else
+      @reservations = @shop.reservations.all
+    end
+  end
+
   def new
     @shop = Shop.new
     @reservation = Reservation.new
