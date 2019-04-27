@@ -8,7 +8,7 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     models:
-      shop: タスク
+      shop: お店
     attributes:
       shop:
         id: ID
@@ -21,6 +21,7 @@ ja:
       reservation:
         reserve_on: 予約時間
         people_number: 人数
+        status: 状態
       user:
         name: 名前
         email: メールアドレス

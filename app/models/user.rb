@@ -4,6 +4,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
 
-  has_many :shops
-  has_many :reservations
+  has_many :shops, dependent: :destroy
+  has_many :reservations, dependent: :destroy
 end

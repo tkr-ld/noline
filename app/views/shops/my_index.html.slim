@@ -1,0 +1,5 @@
+h1 自分のお店一覧
+
+= link_to 'お店の追加', new_shop_path, class: 'btn btn-primary'
+
+= render partial: 'table', locals: { shops: @shops }

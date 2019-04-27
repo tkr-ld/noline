@@ -1,0 +1,16 @@
+= render partial: 'management', locals: { shop: @shop }
+    
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Reservation.human_attribute_name(:reserve_on)
+      th= User.human_attribute_name(:name)
+      th= Reservation.human_attribute_name(:people_number)
+    tbody
+      - @reservations.cancel.each do |reservation|
+        tr
+          td= reservation.reserve_on.to_s(:ja)
+          td= reservation.user.name
+          td= reservation.people_number
+
+= render partial: 'link', locals: { shop: @shop }

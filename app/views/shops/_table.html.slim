@@ -1,0 +1,14 @@
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Shop.human_attribute_name(:name)
+      th= Shop.human_attribute_name(:place)
+      th= Shop.human_attribute_name(:wait_time)
+    tbody
+      - shops.each do |shop|
+        tr
+          td= link_to shop.name, shop
+          td= shop.place
+          td
+            = shop.wait_time

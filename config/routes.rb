@@ -8,7 +8,20 @@ Rails.application.routes.draw do
 
   root to: 'shops#index'
   resources :shops do
-    resources :reservations, only: [:show, :new, :create, :destroy]
+    member do
+      get :canceled
+      get :entered
+      delete :reset
+    end
+    collection do
+      get :my_index
+    end
+    resources :reservations, only: [:show, :new, :create, :destroy] do
+      member do
+        patch :cancel
+        patch :enter
+      end
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

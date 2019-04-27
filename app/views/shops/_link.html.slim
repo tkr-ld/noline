@@ -1,0 +1,2 @@
+= link_to '詳細情報の編集', edit_shop_path(shop), class: 'btn btn-success mr-3'
+= link_to 'お店の削除', shop, method: :delete, data: { confirm: "#{shop.name}を削除します。よろしいですか。" }, class: 'btn btn-danger mr-3'

@@ -1,0 +1,20 @@
+= render partial: 'management', locals: { shop: @shop }
+
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Reservation.human_attribute_name(:reserve_on)
+      th= User.human_attribute_name(:name)
+      th= Reservation.human_attribute_name(:people_number)
+      th
+    tbody
+      - @reservations.enter.each do |reservation|
+        tr
+          td= reservation.reserve_on.to_s(:ja)
+          td= reservation.user.name
+          td= reservation.people_number
+          td
+            - if reservation.yet?
+              = link_to '入店', enter_shop_reservation_path(@shop, reservation), method: :patch, class: 'btn btn-primary mr-3'
+
+= render partial: 'link', locals: { shop: @shop }
