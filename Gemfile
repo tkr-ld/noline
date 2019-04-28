@@ -73,3 +73,5 @@ gem 'enum_help'
 gem "aws-sdk-s3", require: false
 
 gem 'ransack'
+
+gem 'kaminari'

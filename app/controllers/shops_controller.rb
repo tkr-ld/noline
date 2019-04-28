@@ -5,12 +5,12 @@ class ShopsController < ApplicationController
 
   def index
     @q = Shop.where.not(user_id: current_user.id).ransack(params[:q])
-    @shops = @q.result(distinct: true)
+    @shops = @q.result(distinct: true).page(params[:page]).per(4)
   end
 
   def my_index
     @q = Shop.where(user_id: current_user.id).ransack(params[:q])
-    @shops = @q.result(distinct: true)
+    @shops = @q.result(distinct: true).page(params[:page]).per(4)
   end
 
   def show

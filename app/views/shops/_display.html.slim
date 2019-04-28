@@ -4,7 +4,7 @@ br
 
 .row
   - shops.each do |shop|
-      .col-lg-3
+      .col-lg-3.col-md-4.col-sm-6
         .card
           = link_to shop_path(shop)
             - if shop.image.attached?
@@ -18,4 +18,7 @@ br
             h6.inline-right
               = shop.wait_time
               | 分
+  
+.mb-3
+  = paginate shops
   
