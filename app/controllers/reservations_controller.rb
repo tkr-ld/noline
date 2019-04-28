@@ -3,9 +3,9 @@ class ReservationsController < ApplicationController
   before_action :set_shop, only: [:new, :show, :create]
 
   def new
-    reservation = current_user.reservations.find_by(shop_id: params[:shop_id])
+    reservation = current_user.reservations.yet.find_by(shop_id: params[:shop_id])
     #未予約か予約をキャンセルした場合のみ、予約できるようにする
-    if reservation && !(reservation.cancel?)
+    if reservation
       redirect_to shop_reservation_path(@shop, reservation)
     end
     @reservation = Reservation.new
