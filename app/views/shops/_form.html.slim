@@ -1,3 +1,9 @@
+- if shop.errors.present?
+  .alert.alert-warning
+    ul#error_explanation
+      - shop.errors.full_messages.each do |message|
+        li = message
+
 = form_with model: shop, local: true do |f|
   .form-group
     = f.label :name

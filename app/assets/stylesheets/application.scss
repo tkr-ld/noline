@@ -1,10 +1,21 @@
 @import "bootstrap";
+@import "partials/*";
 
-#shop_wait_time {
-  width: auto;
+body {
+  font-family: メイリオ;
+  background-color: rgb(248, 246, 246);
 }
 
-img {
-	max-width: 100%;
-	height: auto;
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid rgb(180, 176, 176);
+}
+
+.nav-link {
+  color: rgb(105, 104, 104);
+}
+
+.nav-link:hover,
+.nav-link:focus{
+  color: #3aa9b1;
 }
