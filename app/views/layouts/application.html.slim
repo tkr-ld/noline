@@ -9,26 +9,31 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .wrapper
-      .app-title.navbar.navbar-expand-md
+      nav.navbar.navbar-expand-md
         .navbar-brand = link_to 'Noline', root_path, class: 'nav-link navi-logo'
+        button.navbar-toggler[type="button"
+          data-toggle="collapse"
+          data-target="#navbar-sample"] 
+          span.navbar-toggler-icon
 
-        ul.navbar-nav.ml-auto
-          - if current_user
-            li.nav-item= link_to '予約する', shops_path, class: 'nav-link'
-            li.nav-item= link_to '自分のお店一覧', my_index_shops_path, class: 'nav-link'      
-            li.btn-group
-              button.btn.btn-info.dropdown-toggle[type="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"]
-                = current_user.name
-              div.dropdown-menu
-                = link_to 'My profile', edit_user_path(current_user), class: "dropdown-item"
-                div.dropdown-divider
-                = link_to 'ログアウト', logout_path, method: :delete, class: "dropdown-item"
-          - else
-            li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link'     
-            li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'  
+        .collapse.navbar-collapse#navbar-sample
+          ul.navbar-nav.ml-auto
+            - if current_user
+              li.nav-item= link_to '予約する', shops_path, class: 'nav-link'
+              li.nav-item= link_to '自分のお店一覧', my_index_shops_path, class: 'nav-link'      
+              li.btn-group
+                button.btn.btn-info.dropdown-toggle[type="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"]
+                  = current_user.name
+                div.dropdown-menu
+                  = link_to 'My profile', edit_user_path(current_user), class: "dropdown-item"
+                  div.dropdown-divider
+                  = link_to 'ログアウト', logout_path, method: :delete, class: "dropdown-item"
+            - else
+              li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link'     
+              li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'  
       .container
         - if flash.notice.present?
           .alert.alert-success= flash.notice
