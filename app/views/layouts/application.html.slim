@@ -3,14 +3,14 @@ html
   head
     title
       | Noline
+    meta name="viewport" content="width=device-width, initial-scale=1"
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .wrapper
-      nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        .container-fluid
+      nav.navbar.navbar-expand-lg.custom-hamburger
           = link_to 'Noline', root_path, class: 'navbar-brand nav-link navi-logo'
           button[class="navbar-toggler"
             type="button"
@@ -20,6 +20,22 @@ html
 
           .collapse.navbar-collapse#navbar-sample
             ul.navbar-nav.ml-auto
+              - if current_user
+                li.nav-item= link_to '予約する', shops_path, class: 'nav-link'
+                li.nav-item= link_to '自分のお店一覧', my_index_shops_path, class: 'nav-link'      
+                li.nav-item
+                  div.dropdown
+                    button.btn.btn-outline-secondary.dropdown-toggle[type="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"]
+                      = current_user.name
+                    div.dropdown.show
+                      div.dropdown-menu
+                        = link_to 'My profile', edit_user_path(current_user), class: "dropdown-item"
+                        div.dropdown-divider
+                        = link_to 'ログアウト', logout_path, method: :delete, class: "dropdown-item"
+              - else
                 li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link'     
                 li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'  
       .container

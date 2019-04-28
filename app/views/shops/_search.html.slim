@@ -1,6 +1,8 @@
 = search_form_for q, class: 'mb-5' do |f|
   .form-group.row
-    = f.label :name_cont, '店名', class: 'col-sm-1 col-form-label'
-    .col-sm-8
+    .col-lg-1
+      = f.label :name_cont, '店名', class: 'col-form-label'
+    .col-lg-7
       = f.search_field :name_cont, class: 'form-control'
-    = f.submit class: 'btn btn-outline-primary'
+    .col-lg-3
+      = f.submit class: 'btn btn-outline-primary'
