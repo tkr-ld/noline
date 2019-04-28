@@ -22,7 +22,8 @@ html
             ul.navbar-nav.ml-auto
               - if current_user
                 li.nav-item= link_to '予約する', shops_path, class: 'nav-link'
-                li.nav-item= link_to '自分の予約一覧', my_reservation_user_path(current_user), class: 'nav-link'
+                li.nav-item= link_to '自分の予約', my_reservation_user_path(current_user), class: 'nav-link'
+                li.nav-item= link_to '予約したことあるお店', my_reserved_shop_user_path(current_user), class: 'nav-link' 
                 li.nav-item= link_to '自分のお店一覧', my_shop_shops_path, class: 'nav-link'      
                 li.nav-item
                   div.dropdown
@@ -33,9 +34,9 @@ html
                       = current_user.name
                     div.dropdown.show
                       div.dropdown-menu
-                        = link_to 'My profile', edit_user_path(current_user), class: "dropdown-item"
+                        = link_to 'ユーザー設定', edit_user_path(current_user), class: 'dropdown-item'
                         div.dropdown-divider
-                        = link_to 'ログアウト', logout_path, method: :delete, class: "dropdown-item"
+                        = link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
               - else
                 li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link'     
                 li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'  
