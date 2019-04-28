@@ -6,6 +6,8 @@ class Shop < ApplicationRecord
 
   belongs_to :user
   has_many :reservations, dependent: :destroy
+  has_many :already_relationships, dependent: :destroy
+  has_many :reserved_users, through: :already_relationships, source: :user
 
   def set_expected
     DateTime.now + Rational(wait_time, 24 * 60)

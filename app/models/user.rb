@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :shops, dependent: :destroy
   has_many :reservations, dependent: :destroy
+  has_many :already_relationships, dependent: :destroy
+  has_many :reserved_shops, through: :already_relationships, source: :shop
 end
