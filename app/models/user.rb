@@ -8,4 +8,12 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
   has_many :already_relationships, dependent: :destroy
   has_many :reserved_shops, through: :already_relationships, source: :shop
+
+  def add_reserved_shop(shop)
+    self.already_relationships.find_or_create_by(shop_id: shop.id)
+  end
+
+  def reserved?(shop)
+    self.reserved_shops.include?(shop)
+  end
 end
