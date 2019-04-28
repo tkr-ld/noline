@@ -7,6 +7,34 @@ img {
 	height: auto;
 }
 
+table.table-hover {
+	background-color: white;
+}
+
+.card-img-top {
+  width: 500px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.management-img {
+	width: 500px;
+  height: 300px;
+  object-fit: cover;
+}
+
 #shop_wait_time {
   width: auto;
+}
+
+.inline-left {
+	float: left;
+}
+
+.inline-right {
+	float: right;
+}
+
+.side {
+	display: inline-block;
 }

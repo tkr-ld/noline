@@ -1,5 +1,7 @@
-h3
-  = shop.reservations.yet.count
-  | 組
-  = shop.total_people_number
-  | 人待ち
+.row
+  .col-sm-12
+    h2 = shop.name
+    - if shop.image.attached?
+      = image_tag shop.image, class:"management-img"
+    - else
+      = image_tag 'noimage.png', class:"management-img"

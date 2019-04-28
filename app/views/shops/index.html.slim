@@ -1,3 +1,5 @@
-h1 予約できるお店一覧
-
-= render partial: 'table', locals: { shops: @shops }
+.row
+  .col-lg-12
+    h2.inline-left 予約できるお店一覧
+  .col-lg-12
+    = render partial: 'display', locals: { shops: @shops }

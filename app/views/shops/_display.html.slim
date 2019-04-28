@@ -1,0 +1,17 @@
+.row
+  - shops.each do |shop|
+      .col-lg-3
+        .card
+          = link_to shop_path(shop)
+            - if shop.image.attached?
+              = image_tag shop.image, class:"card-img-top"
+            - else
+              = image_tag 'noimage.png', class:"card-img-top"
+          .card-body
+            h6
+              strong = shop.name
+            h6.inline-left = shop.place
+            h6.inline-right
+              = shop.wait_time
+              | 分
+  
