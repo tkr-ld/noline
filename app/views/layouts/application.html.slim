@@ -22,7 +22,8 @@ html
             ul.navbar-nav.ml-auto
               - if current_user
                 li.nav-item= link_to '予約する', shops_path, class: 'nav-link'
-                li.nav-item= link_to '自分のお店一覧', my_index_shops_path, class: 'nav-link'      
+                li.nav-item= link_to '自分の予約一覧', my_reservation_user_path(current_user), class: 'nav-link'
+                li.nav-item= link_to '自分のお店一覧', my_shop_shops_path, class: 'nav-link'      
                 li.nav-item
                   div.dropdown
                     button.btn.btn-outline-secondary.dropdown-toggle[type="button"

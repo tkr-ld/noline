@@ -8,7 +8,7 @@ class ShopsController < ApplicationController
     @shops = @q.result(distinct: true).page(params[:page]).per(4)
   end
 
-  def my_index
+  def my_shop
     @q = Shop.where(user_id: current_user.id).ransack(params[:q])
     @shops = @q.result(distinct: true).page(params[:page]).per(4)
   end

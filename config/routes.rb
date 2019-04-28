@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :users, except: [:index, :show]
+  resources :users, except: [:index, :show] do
+    member do
+      get :my_reservation
+    end
+  end
 
   root to: 'shops#index'
   resources :shops do
@@ -14,7 +18,7 @@ Rails.application.routes.draw do
       delete :reset
     end
     collection do
-      get :my_index
+      get :my_shop
     end
     resources :reservations, only: [:show, :new, :create, :destroy] do
       member do

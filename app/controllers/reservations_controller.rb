@@ -2,6 +2,10 @@ class ReservationsController < ApplicationController
   before_action :different_user, only: [:new, :show]
   before_action :set_shop, only: [:new, :show, :create]
 
+  def index
+    @reservations = current_user.reservations.yet
+  end
+
   def new
     reservation = current_user.reservations.yet.find_by(shop_id: params[:shop_id])
     #未予約か予約をキャンセルした場合のみ、予約できるようにする
