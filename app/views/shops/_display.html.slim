@@ -1,3 +1,7 @@
+.btn.btn-outline-primary = sort_link(@q, :created_at, default_order: :desc)
+
+br
+
 .row
   - shops.each do |shop|
       .col-lg-3

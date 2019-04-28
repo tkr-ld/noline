@@ -3,4 +3,6 @@
     h2.inline-left 自分のお店一覧
     .inline-right = link_to 'お店の追加', new_shop_path, class: 'btn btn-primary'
   .col-lg-12
+    = render partial: 'search', locals: { q: @q }
+  .col-lg-12
     = render partial: 'display', locals: { shops: @shops }
