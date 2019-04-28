@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     @reservations = current_user.reservations.yet
   end
 
+  def my_reserved_shop
+    @shops = current_user.reserved_shops.page(params[:page]).per(4)
+  end
+
   private
 
   def set_user

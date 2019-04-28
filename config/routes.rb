@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, except: [:index, :show] do
     member do
       get :my_reservation
+      get :my_reserved_shop
     end
   end
 
