@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :users, except: [:index, :show]
+  resources :users, except: [:index, :show] do
+    member do
+      get :my_reservation
+      get :my_reserved_shop
+    end
+  end
 
   root to: 'shops#index'
   resources :shops do
@@ -14,7 +19,7 @@ Rails.application.routes.draw do
       delete :reset
     end
     collection do
-      get :my_index
+      get :my_shop
     end
     resources :reservations, only: [:show, :new, :create, :destroy] do
       member do
@@ -23,5 +28,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :relationships, only: [:create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :login_required
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy, :my_reservation]
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def new
@@ -31,6 +31,14 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to admin_users_url, notice: "ユーザー「#{@user.name}を削除しました。」"
+  end
+
+  def my_reservation
+    @reservations = current_user.reservations.yet
+  end
+
+  def my_reserved_shop
+    @shops = current_user.reserved_shops.page(params[:page]).per(4)
   end
 
   private

@@ -2,6 +2,10 @@ class ReservationsController < ApplicationController
   before_action :different_user, only: [:new, :show]
   before_action :set_shop, only: [:new, :show, :create]
 
+  def index
+    @reservations = current_user.reservations.yet
+  end
+
   def new
     reservation = current_user.reservations.yet.find_by(shop_id: params[:shop_id])
     #未予約か予約をキャンセルした場合のみ、予約できるようにする
@@ -19,6 +23,9 @@ class ReservationsController < ApplicationController
     reservation = current_user.reservations.new(reservation_params)
     reservation.reserve(@shop)
     reservation.save!
+    unless current_user.reserved?(@shop)
+      current_user.add_reserved_shop(@shop)
+    end
     redirect_to root_url, notice: "#{@shop.name}の予約を#{reservation.reserve_on.to_s(:ja)}で予約をお取りしました"
   end
 

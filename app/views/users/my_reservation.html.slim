@@ -1,0 +1,16 @@
+.row
+  .col-lg-12
+    table.table.table-hover
+      thead.thead-default
+        tr
+          th= Reservation.human_attribute_name(:reserve_on)
+          th= Shop.human_attribute_name(:name)
+          th= Reservation.human_attribute_name(:people_number)
+        tbody
+          - @reservations.each do |reservation|
+            tr
+              td
+                = link_to shop_reservation_path(reservation.shop, reservation), class: 'btn btn-secondary'
+                  .reservation_link = reservation.reserve_on.to_s(:ja)
+              td= reservation.shop.name
+              td= reservation.people_number
