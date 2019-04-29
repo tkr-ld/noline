@@ -66,6 +66,8 @@ gem 'slim-rails'
 gem 'html2slim'
 
 gem 'bootstrap'
+gem 'bootstrap-social-rails'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
 
 gem 'enum_help'
