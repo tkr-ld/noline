@@ -75,3 +75,8 @@ gem "aws-sdk-s3", require: false
 gem 'ransack'
 
 gem 'kaminari'
+
+gem 'omniauth'
+gem 'omniauth-twitter'
+
+gem 'dotenv-rails'
