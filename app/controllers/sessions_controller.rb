@@ -5,13 +5,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: session_params[:email])
-
-    if user&.authenticate(session_params[:password])
+    auth = request.env['omniauth.auth']
+    if auth.present?
+      user = User.find_or_create_from_auth(request.env['omniauth.auth'])
       session[:user_id] = user.id
-      redirect_to root_path, notice: 'ログインしました。'
+      redirect_to root_path
     else
-      render :new
+      user = User.find_by(email: session_params[:email])
+
+      if user&.authenticate(session_params[:password])
+        session[:user_id] = user.id
+        redirect_to root_path, notice: 'ログインしました。'
+      else
+        render :new
+      end
     end
   end
 

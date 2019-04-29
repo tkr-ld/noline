@@ -8,3 +8,6 @@ h1 ログイン
     = f.label :password, 'パスワード'
     = f.password_field :password, class: 'form-control', id: 'session_password'
   = f.submit 'ログインする', class: 'btn btn-primary'
+
+
+= link_to 'Twitterアカウントでログイン', "/auth/twitter"
