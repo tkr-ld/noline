@@ -1,3 +1,7 @@
-h1 ユーザー編集
+.row
+  .col-lg-12
+    h2.inline-left
+      = @user.name
+      | さんの詳細情報
 
 = render partial: 'form', locals: { user: @user }
