@@ -19,6 +19,10 @@ html
             span.navbar-toggler-icon
 
           .collapse.navbar-collapse#navbar-sample
+            ul.navbar-nav.mr-auto
+              li.nav-item
+                button.btn.btn-outline-secondary[type="button" data-toggle="modal" data-target="#how-to"]
+                  | 使い方
             ul.navbar-nav.ml-auto
               - if current_user
                 li.nav-item= link_to '予約する', shops_path, class: 'nav-link'
@@ -44,3 +48,25 @@ html
         - if flash.notice.present?
           .alert.alert-success= flash.notice
         = yield
+
+    #how-to.modal.fade[tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"]
+      .modal-dialog.modal-lg[role="document"]
+        .modal-content
+          .modal-body
+            button.close[type="button" data-dismiss="modal" aria-label="Close"]
+              span[aria-hidden="true"]
+                | &times;
+            h5 予約するとき
+            ol
+              li ナビバーから「予約する」を選択します
+              li 予約したいお店を選びます
+              li 表示されている時間でよければ、人数を選んで予約します
+            h5 キャンセルするとき
+            ol
+              li ナビバーから「予約する」を選択します
+              li キャンセルするお店を選びます
+              li キャンセルします
+            .inline-right
+              button.btn.btn-outline-light[type="button" data-dismiss="modal"]
+                | Close
+
