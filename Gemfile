@@ -66,6 +66,8 @@ gem 'slim-rails'
 gem 'html2slim'
 
 gem 'bootstrap'
+gem 'bootstrap-social-rails'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
 
 gem 'enum_help'
@@ -75,3 +77,8 @@ gem "aws-sdk-s3", require: false
 gem 'ransack'
 
 gem 'kaminari'
+
+gem 'omniauth'
+gem 'omniauth-twitter'
+
+gem 'dotenv-rails'
