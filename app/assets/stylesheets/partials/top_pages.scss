@@ -1,0 +1,40 @@
+// Place all the styles related to the TopPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.jumbotron {
+  background:url(topimage2.jpg) center no-repeat;
+  background-size: cover;
+  background-position: center 60%;
+  margin-top: -20px; 
+}
+
+.toppage-character {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-toppage {
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-toppage:hover {
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(39, 37, 37, 0.7);
+}
+
+.a {
+  /*background-color: blue;*/
+  margin-top : 10px ;
+}
+
+.b {
+  /*background-color: red;*/
+  margin-top  : 10px ;
+}
+
+.c {
+  /*background-color: yellow;*/
+  margin-top  : 10px ;
+}

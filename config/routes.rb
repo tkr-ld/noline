@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  root to: 'top_pages#index'
+
+  get '/home', to: 'top_pages#index'
+  
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -13,7 +17,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'shops#index'
   resources :shops do
     member do
       get :canceled
