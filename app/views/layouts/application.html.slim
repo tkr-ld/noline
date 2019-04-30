@@ -25,10 +25,12 @@ html
                   | 使い方
             ul.navbar-nav.ml-auto
               - if current_user
-                li.nav-item= link_to '予約する', shops_path, class: 'nav-link'
-                li.nav-item= link_to '自分の予約', my_reservation_user_path(current_user), class: 'nav-link'
+                li.nav-item= link_to '予約する', shops_path, class: 'nav-link' 
+                li.nav-item= link_to '自分の予約', my_reservation_user_path(current_user), class: 'nav-link' 
                 li.nav-item= link_to '予約したことあるお店', my_reserved_shop_user_path(current_user), class: 'nav-link' 
-                li.nav-item= link_to '自分のお店一覧', my_shop_shops_path, class: 'nav-link'      
+                li.nav-item= link_to my_shop_shops_path, class: 'nav-link' 
+                  span.fa.fa-home
+                  span 自分のお店     
                 li.nav-item
                   div.dropdown
                     button.btn.btn-outline-secondary.dropdown-toggle[type="button"
@@ -70,7 +72,7 @@ html
               li キャンセルします
 
             hr
-            
+
             h5 お店の登録
             ol
               li ナビバーから「自分のお店一覧」を選択します
