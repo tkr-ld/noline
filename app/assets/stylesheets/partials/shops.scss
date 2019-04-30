@@ -27,6 +27,11 @@ table.table-hover {
   width: auto;
 }
 
+.inline-ajust {
+	display: inline-block;
+	width: auto;
+}
+
 .inline-left {
 	float: left;
 }
@@ -37,4 +42,8 @@ table.table-hover {
 
 .side {
 	display: inline-block;
+}
+
+.btn-change-time {
+	margin-left: 8px;
 }

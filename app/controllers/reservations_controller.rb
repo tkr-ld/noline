@@ -29,6 +29,12 @@ class ReservationsController < ApplicationController
     redirect_to root_url, notice: "#{@shop.name}の予約を#{reservation.reserve_on.to_s(:ja)}で予約をお取りしました"
   end
 
+  def update
+    reservation = Reservation.find(params[:id])
+    reservation.update!(change_time_params)
+    redirect_to shop_path(reservation.shop), notice: "#{reservation.user.name}さんの予約時間を#{reservation.reserve_on.to_s(:ja)}に変更しました"
+  end
+
   def cancel
     unless reservation = current_user.reservations.find(params[:id])
       redirect_to root_url
@@ -57,5 +63,9 @@ class ReservationsController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(:people_number)
+  end
+
+  def change_time_params
+    params.require(:reservation).permit(:reserve_on)
   end
 end
