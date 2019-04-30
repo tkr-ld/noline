@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if auth.present?
       user = User.find_or_create_from_auth(request.env['omniauth.auth'])
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to root_path, notice: 'Twitterアカウントでログインしました。'
     else
       user = User.find_by(email: session_params[:email])
 

@@ -15,10 +15,10 @@ html
           button[class="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbar-sample"] 
+            data-target="#navbar-menu"] 
             span.navbar-toggler-icon
 
-          .collapse.navbar-collapse#navbar-sample
+          .collapse.navbar-collapse#navbar-menu
             ul.navbar-nav.mr-auto
               li.nav-item
                 button.btn.btn-outline-secondary[type="button" data-toggle="modal" data-target="#how-to"]
@@ -43,11 +43,13 @@ html
                         = link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
               - else
                 li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link'     
-                li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'  
-      .container
-        - if flash.notice.present?
-          .alert.alert-success= flash.notice
-        = yield
+                li.nav-item= link_to 'ログイン', login_path, class: 'nav-link' 
+                
+      - unless controller.controller_name == 'top_pages' && controller.action_name == 'index'
+        .container
+          = render partial: 'layouts/flash_yield'
+      - else
+          = yield
 
     #how-to.modal.fade[tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"]
       .modal-dialog.modal-lg[role="document"]
@@ -66,7 +68,20 @@ html
               li ナビバーから「予約する」を選択します
               li キャンセルするお店を選びます
               li キャンセルします
-            .inline-right
+
+            hr
+            
+            h5 お店の登録
+            ol
+              li ナビバーから「自分のお店一覧」を選択します
+              li 「お店の追加」を選びます
+              li お店を登録します
+            h5 予約を管理する
+            ol
+              li ナビバーから「自分のお店一覧」を選択します
+              li 予約を管理するお店を選びます
+              li 予約管理画面
+            .modal-footer
               button.btn.btn-outline-light[type="button" data-dismiss="modal"]
                 | Close
 

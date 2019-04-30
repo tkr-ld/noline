@@ -1,2 +1,47 @@
-h1 TopPages#index
-p Find me in app/views/top_pages/index.html.slim
+.container
+  - if flash.notice.present?
+    .alert.alert-success.alert-toppage = flash.notice
+.jumbotron.jumbotron-fluid
+  .container
+    .row
+      .col-lg-12.text-center
+        strong.h1.toppage-character Noline
+        br
+        h3.toppage-character 行列をなくそう
+      .offset-lg-3.col-lg-2.col-sm-6.text-center.a
+        = link_to '新規登録', new_user_path, class: 'btn btn-outline-secondary btn-toppage' 
+      .col-lg-2.col-sm-6.text-center.b
+        = link_to 'ログイン', login_path, class: 'btn btn-outline-secondary btn-toppage'
+      .col-lg-2.col-sm-12.text-center.c
+        = link_to '/auth/twitter', class: "btn btn-social btn-outline-secondary btn-toppage" do
+          span.fa.fa-twitter
+          div Twitterログイン
+.container
+  .row
+    .col-lg-6.col-xs-12
+      .card
+        .card-body
+          .col-lg-12.col-xs-12
+            .card-title.text-center
+              h4.text-muted お客として使う
+          .col-lg-4.col-xs-12.inline-right
+            .text-center = image_tag 'sumaho.png'
+          .col-lg-8.col-xs-12
+            strong
+              ul
+                li.text-muted お店側から指定された時間で予約することができます
+                li.text-muted もし、待ち時間があまりに長い場合や都合が悪くなってしまった場合はキャンセルすることも可能です
+    .col-lg-6.col-xs-12
+      .card
+        .card-body
+          .col-lg-12.col-xs-12
+            .card-title.text-center
+              h4.text-muted お店として使う
+          .col-lg-4.col-xs-12.inline-right
+            .text-center = image_tag 'clerk.png'
+          .col-lg-8.col-xs-12
+            strong
+              ul
+                li.text-muted お店側から待ち時間を指定し、予約を受け付けることができます
+                li.text-muted 予約を未入店、入店済み、キャンセルの3つのステータスで管理できます
+        
