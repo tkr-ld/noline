@@ -2,13 +2,13 @@
 
 .row
   .col-lg-12
-    h3 
+    h2 
       = @shop.reservations.yet.count
       | 組
       = @shop.total_people_number
       | 人待ち
-    h3 今予約すると予約時間は
-    h3
+    h5 今予約すると予約時間は
+    h5
       strong = @shop.set_expected.to_s(:ja)
       | です
       
