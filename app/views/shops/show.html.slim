@@ -25,19 +25,19 @@ table.table.table-hover
         .modal.fade[id="change-time#{reservation.id}"tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"]
           .modal-dialog.modal-lg[role="document"]
             .modal-content
-              .modal-header
+              .modal-header.modal-change-time
                 h5.modal-title 予約時間の変更
                 button.close[type="button" data-dismiss="modal" aria-label="Close"]
                   span[aria-hidden="true"]
                     | &times;
-              .modal-body
+              .modal-body.modal-change-time
                 = form_with model: reservation, url: [reservation.shop, reservation], local: true do |f|
                   .form-inline
                     .form-group
                       = f.datetime_select :reserve_on, {}, class: 'form-control custom-select inline-ajust' 
-                    = f.submit '変更する', data: { confirm: "#{@shop.set_expected.to_s(:ja)}で予約をお取りします。よろしいですか?"}, class: 'btn btn-outline-primary btn-change-time'
+                    = f.submit '変更する', data: { confirm: "#{@shop.set_expected.to_s(:ja)}で予約をお取りします。よろしいですか?"}, class: 'btn btn-outline-light btn-change-time'
 
-              .modal-footer
+              .modal-footer.modal-change-time
                 button.btn.btn-outline-light[type="button" data-dismiss="modal"]
                   | Close
 
