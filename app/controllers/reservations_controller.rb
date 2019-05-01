@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :different_user, only: [:new, :show]
+  before_action :correct_owner, only: [:update, :enter]
   before_action :set_shop, only: [:new, :show, :create]
 
   def index
@@ -57,6 +58,12 @@ class ReservationsController < ApplicationController
 
   def different_user
     if current_user.shops.find_by(id: params[:shop_id])
+      redirect_to root_url
+    end
+  end
+
+  def correct_owner
+    unless current_user == Reservation.find(params[:id]).shop.user
       redirect_to root_url
     end
   end
