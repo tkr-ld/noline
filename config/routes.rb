@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     collection do
       get :my_shop
     end
-    resources :reservations, only: [:show, :new, :create, :destroy] do
+    resources :reservations, only: [:show, :new, :create, :update, :destroy] do
       member do
         patch :cancel
         patch :enter

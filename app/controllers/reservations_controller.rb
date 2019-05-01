@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :different_user, only: [:new, :show]
+  before_action :correct_owner, only: [:update, :enter]
   before_action :set_shop, only: [:new, :show, :create]
 
   def index
@@ -29,6 +30,12 @@ class ReservationsController < ApplicationController
     redirect_to root_url, notice: "#{@shop.name}の予約を#{reservation.reserve_on.to_s(:ja)}で予約をお取りしました"
   end
 
+  def update
+    reservation = Reservation.find(params[:id])
+    reservation.update!(change_time_params)
+    redirect_to shop_path(reservation.shop), notice: "#{reservation.user.name}さんの予約時間を#{reservation.reserve_on.to_s(:ja)}に変更しました"
+  end
+
   def cancel
     unless reservation = current_user.reservations.find(params[:id])
       redirect_to root_url
@@ -55,7 +62,17 @@ class ReservationsController < ApplicationController
     end
   end
 
+  def correct_owner
+    unless current_user == Reservation.find(params[:id]).shop.user
+      redirect_to root_url
+    end
+  end
+
   def reservation_params
     params.require(:reservation).permit(:people_number)
+  end
+
+  def change_time_params
+    params.require(:reservation).permit(:reserve_on)
   end
 end

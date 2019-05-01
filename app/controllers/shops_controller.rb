@@ -74,7 +74,7 @@ class ShopsController < ApplicationController
     unless current_user.shops.find_by(id: params[:id])
       redirect_to new_shop_reservation_path(@shop)
     else
-      @reservations = @shop.reservations.all
+      @reservations = @shop.reservations.order('reserve_on desc')
     end
   end
 
