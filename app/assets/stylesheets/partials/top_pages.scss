@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .jumbotron {
-  background:url(topimage2.jpg) center no-repeat;
+  background: asset-url('topimage2.jpg') center no-repeat;
   background-size: cover;
   background-position: center 60%;
   margin-top: -20px; 
