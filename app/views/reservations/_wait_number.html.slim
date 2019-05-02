@@ -1,7 +1,9 @@
 .row
-  .col-sm-12
+  .col-lg-7.col-xs-12
     h2 = shop.name
     - if shop.image.attached?
       = image_tag shop.image, class:"management-img"
     - else
       = image_tag 'noimage.png', class:"management-img"
+  .col-lg-5.col-xs-12.inline-right
+    #map

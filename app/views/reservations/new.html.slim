@@ -1,19 +1,21 @@
 = render partial: 'wait_number', locals: { shop: @shop }
 
-.row
-  .col-lg-12
-    h2 
-      = @shop.reservations.yet.count
-      | 組
-      = @shop.total_people_number
-      | 人待ち
-    h5 今予約すると予約時間は
-    h5
-      strong = @shop.set_expected.to_s(:ja)
-      | です
-      
-    = form_with model: @reservation, url: [@shop, @reservation], local: true do |f|
-      .form-group
-        = f.select :people_number, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8]],{} ,class: 'form-control custom-select', id: 'shop_wait_time'
-        | 人
-      = f.submit '予約する', data: { confirm: "#{@shop.set_expected.to_s(:ja)}で予約をお取りします。よろしいですか?"}, class: 'btn btn-primary'
+.col-lg-6.col-xs-12
+  h2 
+    = @shop.reservations.yet.count
+    | 組
+    = @shop.total_people_number
+    | 人待ち
+  h5 今予約すると予約時間は
+  h5
+    strong = @shop.set_expected.to_s(:ja)
+    | です
+    
+  = form_with model: @reservation, url: [@shop, @reservation], local: true do |f|
+    .form-group
+      = f.select :people_number, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8]],{} ,class: 'form-control custom-select', id: 'shop_wait_time'
+      | 人
+    = f.submit '予約する', data: { confirm: "#{@shop.set_expected.to_s(:ja)}で予約をお取りします。よろしいですか?"}, class: 'btn btn-primary'
+
+script
+  |  function initMap(){ let map = new google.maps.Map(document.getElementById('map'), { center: {lat: -34.397, lng: 150.644}, zoom: 8 }); } 
