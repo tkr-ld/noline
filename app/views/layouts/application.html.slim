@@ -8,8 +8,6 @@ html
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    - if controller.controller_name == "reservations"
-      script[src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2qDkWxsm06fWOIJRHduSiHVFmBs2ozIw&callback=initMap" async defer]
   body
     .wrapper
       nav.navbar.navbar-expand-lg.fixed-top.custom-hamburger
