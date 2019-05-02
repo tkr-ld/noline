@@ -1,0 +1,5 @@
+style
+  |  #map{ height: 400px; } 
+script
+  |  let mapInstance function initMap(){ mapInstance = new google.maps.Map(document.getElementById('map'), { center: {lat: -34.397, lng: 150.644}, zoom: 8 }); marker = new google.maps.Marker({ position: center, map: map }); geocoder.geocode({'address': address}, function(results, status) { if (status === google.maps.GeocoderStatus.OK) { resultsMap.setCenter(results[0].geometry.location); var marker = new google.maps.Marker({ map: resultsMap, position: results[0].geometry.location }); } else { alert('Geocode was not successful for the following reason: ' + status); } }); } 
+script[src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer]

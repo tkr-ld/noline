@@ -9,6 +9,14 @@ class Shop < ApplicationRecord
   has_many :already_relationships, dependent: :destroy
   has_many :reserved_users, through: :already_relationships, source: :user
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name place]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
   def set_expected
     DateTime.now + Rational(wait_time, 24 * 60)
   end

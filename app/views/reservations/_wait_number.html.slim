@@ -1,7 +1,32 @@
+javascript:
+  function initMap(){
+    geocoder = new google.maps.Geocoder();
+    
+    var address = "#{@shop.place}";
+
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        let map = new google.maps.Map(document.getElementById('map'),{
+        center: results[0].geometry.location,
+        zoom: 15
+        });
+        var marker = new google.maps.Marker({ map: map, position: results[0].geometry.location });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      } 
+    });
+  }
+
+script[src="https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_API_KEY']}&callback=initMap" async defer]
+
 .row
-  .col-sm-12
+  .col-lg-6.col-xs-12
     h2 = shop.name
     - if shop.image.attached?
       = image_tag shop.image, class:"management-img"
     - else
       = image_tag 'noimage.png', class:"management-img"
+  .col-lg-5.col-xs-12.inline-right
+    #map
+    .text-center
+      h5 = shop.place
