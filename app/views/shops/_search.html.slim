@@ -1,10 +1,15 @@
 = search_form_for q, class: 'mb-5' do |f|
   .form-group.row
     .col-lg-1.offset-lg-2
-      = f.label :name_cont, '店名', class: 'col-form-label'
+      strong = f.label :name_cont, '店名', class: 'col-form-label'
     .col-lg-6
       = f.search_field :name_cont, class: 'form-control'
-    .col-lg-2
+  .form-group.row
+    .col-lg-1.offset-lg-2
+      strong = f.label :place_cont, '場所', class: 'col-form-label'
+    .col-lg-6
+      = f.search_field :place_cont, class: 'form-control'
+  .text-center
       = f.submit class: 'btn btn-outline-primary'
 
 .btn.btn-outline-primary = sort_link(q, :created_at, default_order: :desc)
