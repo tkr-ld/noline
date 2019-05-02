@@ -34,7 +34,7 @@ class ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update!(change_time_params)
-    ReservationMailer.inform_change_time(@reservation, @user).deliver
+    ReservationMailer.inform_change_time(@reservation, @reservation.user).deliver
     redirect_to shop_path(@reservation.shop), notice: "#{@reservation.user.name}さんの予約時間を#{@reservation.reserve_on.to_s(:ja)}に変更しました"
   end
 

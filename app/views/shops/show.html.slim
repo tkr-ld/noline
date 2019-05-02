@@ -36,7 +36,8 @@ table.table.table-hover
                     .form-group
                       = f.datetime_select :reserve_on, {}, class: 'form-control custom-select inline-ajust' 
                     = f.submit '変更する', data: { confirm: "#{@shop.set_expected.to_s(:ja)}で予約をお取りします。よろしいですか?"}, class: 'btn btn-outline-light btn-change-time'
-
+                  br
+                  p 時間を変更すると、予約者にメールで通知されます
               .modal-footer.modal-change-time
                 button.btn.btn-outline-light[type="button" data-dismiss="modal"]
                   | Close
