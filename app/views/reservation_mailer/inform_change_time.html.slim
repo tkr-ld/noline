@@ -1,0 +1,8 @@
+p 
+  = @user.name
+  | さんの
+  = @reservation.shop.name
+  | 予約時間が下記に変更されましたのでご注意ください。
+
+p = @reservation.reserve_on.to_s(:ja)
+p よろしくお願いいたします。
