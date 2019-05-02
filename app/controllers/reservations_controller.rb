@@ -2,6 +2,7 @@ class ReservationsController < ApplicationController
   before_action :different_user, only: [:new, :show]
   before_action :correct_owner, only: [:update, :enter]
   before_action :set_shop, only: [:new, :show, :create]
+  before_action :set_reservation, only: [:update, :enter]
 
   def index
     @reservations = current_user.reservations.yet
@@ -31,9 +32,10 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    reservation = Reservation.find(params[:id])
-    reservation.update!(change_time_params)
-    redirect_to shop_path(reservation.shop), notice: "#{reservation.user.name}さんの予約時間を#{reservation.reserve_on.to_s(:ja)}に変更しました"
+    @reservation = Reservation.find(params[:id])
+    @reservation.update!(change_time_params)
+    ReservationMailer.inform_change_time(@reservation, @user).deliver
+    redirect_to shop_path(@reservation.shop), notice: "#{@reservation.user.name}さんの予約時間を#{@reservation.reserve_on.to_s(:ja)}に変更しました"
   end
 
   def cancel
@@ -45,15 +47,19 @@ class ReservationsController < ApplicationController
   end
 
   def enter
-    reservation = Reservation.find(params[:id])
-    reservation.enter!
-    redirect_to shop_path(reservation.shop), notice: "#{reservation.user.name}が入店しました"
+    @reservation = Reservation.find(params[:id])
+    @reservation.enter!
+    redirect_to shop_path(@reservation.shop), notice: "#{@reservation.user.name}が入店しました"
   end
 
   private
 
   def set_shop
     @shop = Shop.find(params[:shop_id])
+  end
+
+  def set_reservation
+    @reservation = Reservation.find(params[:id])
   end
 
   def different_user
