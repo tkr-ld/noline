@@ -28,6 +28,11 @@ html
                 li.nav-item= link_to '予約する', shops_path, class: 'nav-link' 
                 li.nav-item= link_to '自分の予約', my_reservation_user_path(current_user), class: 'nav-link' 
                 li.nav-item= link_to '予約したことあるお店', my_reserved_shop_user_path(current_user), class: 'nav-link' 
+                li.nav-item= link_to messages_index_path, class: 'nav-link' 
+                  span.fa.fa-bell-o
+                  span 通知 
+                  span.badge.badge-dark
+                    = current_user.messages_yet_count
                 li.nav-item= link_to my_shop_shops_path, class: 'nav-link' 
                   span.fa.fa-home
                   span 自分のお店     

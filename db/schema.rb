@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_29_054914) do
+ActiveRecord::Schema.define(version: 2019_05_04_061244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,15 @@ ActiveRecord::Schema.define(version: 2019_04_29_054914) do
     t.index ["user_id"], name: "index_already_relationships_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "content_type"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "reservations", force: :cascade do |t|
     t.datetime "reserve_on", null: false
     t.integer "people_number", null: false
@@ -76,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_04_29_054914) do
     t.string "uid"
     t.string "provider"
     t.string "image_url"
+    t.integer "messages_yet_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
