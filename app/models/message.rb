@@ -24,7 +24,6 @@ class Message < ApplicationRecord
     self.content_type = 2
     self.content = "#{reservation.shop.name}の予約時間が#{reservation.reserve_on.to_s(:ja)}に変更されました"
     user = reservation.user
-    user = reservation.shop.user
     add_count(user)
   end
 
