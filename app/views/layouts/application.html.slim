@@ -31,6 +31,8 @@ html
                 li.nav-item= link_to messages_index_path, class: 'nav-link' 
                   span.fa.fa-bell-o
                   span 通知 
+                  span.badge.badge-dark
+                    = current_user.messages_yet_count
                 li.nav-item= link_to my_shop_shops_path, class: 'nav-link' 
                   span.fa.fa-home
                   span 自分のお店     
