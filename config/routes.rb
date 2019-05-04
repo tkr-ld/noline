@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'messages/index'
   root to: 'top_pages#index'
 
   get '/home', to: 'top_pages#index'

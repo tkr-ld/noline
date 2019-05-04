@@ -25,16 +25,28 @@ class ReservationsController < ApplicationController
     reservation = current_user.reservations.new(reservation_params)
     reservation.reserve(@shop)
     reservation.save!
+
     unless current_user.reserved?(@shop)
       current_user.add_reserved_shop(@shop)
     end
+
+    message = reservation.shop.user.messages.build
+    message.reserve(reservation)
+    message.save!
+
     redirect_to root_url, notice: "#{@shop.name}の予約を#{reservation.reserve_on.to_s(:ja)}で予約をお取りしました"
   end
 
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update!(change_time_params)
+
+    message = @reservation.user.messages.build
+    message.change_reservation_time(@reservation)
+    message.save!
+
     ReservationMailer.inform_change_time(@reservation, @reservation.user).deliver
+
     redirect_to shop_path(@reservation.shop), notice: "#{@reservation.user.name}さんの予約時間を#{@reservation.reserve_on.to_s(:ja)}に変更しました"
   end
 
@@ -43,6 +55,11 @@ class ReservationsController < ApplicationController
       redirect_to root_url
     end
     reservation.cancel!
+
+    message = reservation.shop.user.messages.build
+    message.cancel(reservation)
+    message.save!
+
     redirect_to root_url, notice: "#{reservation.shop.name}の予約をキャンセルしました"
   end
 
