@@ -6,10 +6,10 @@
     | 組
     = @shop.total_people_number
     | 人待ち
-  h5 今予約すると予約時間は
-  h5
-    strong = @shop.set_expected.to_s(:ja)
-    | です
+  h5 
+    | 現在予約できる時間
+    br
+    .btn.btn-lg.btn-secondary = @shop.set_expected.to_s(:ja)
     
   = form_with model: @reservation, url: [@shop, @reservation], local: true do |f|
     .form-group

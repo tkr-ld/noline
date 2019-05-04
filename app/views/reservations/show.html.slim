@@ -3,7 +3,9 @@
 br
 
 .col-lg-12
-  h3
-    strong = @reservation.reserve_on.to_s(:ja)
-    | で予約しています
+  h4
+    | 現在の予約時間
+    br
+    .btn.btn-lg.btn-secondary = @reservation.reserve_on.to_s(:ja)
+  br
   = link_to '予約のキャンセル', cancel_shop_reservation_path(@shop, @reservation), method: :patch, data: { confirm: "#{@shop.name}の予約をキャンセルします。よろしいですか。" }, class: 'btn btn-danger mr-3'

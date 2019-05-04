@@ -1,6 +1,6 @@
-h2 = shop.name
-
 .row
+  .col-lg-12
+    h3.inline-left.text-muted = shop.name
   .col-lg-6.col-md-8.col-sm-12.inline-left
     - if shop.image.attached?
       = image_tag shop.image, class:"management-img"
@@ -9,7 +9,22 @@ h2 = shop.name
   br
   
   .col-lg-6
-    .inline-right
+    h3
+      = shop.reservations.yet.count
+      | 組
+      = shop.total_people_number
+      | 人待ち
+    h5
+      strong
+        h5 設定予約時間
+        .btn.btn-secondary = shop.set_expected.to_s(:ja)
+
+    table.table
+      tbody
+        tr
+          th 場所
+          td= shop.place
+
     = form_with model: shop, local: true do |f|
       .form-inline
         .field
@@ -18,24 +33,7 @@ h2 = shop.name
           = f.select :wait_time, [["0",0],["10",10],["20",20],["30",30],["40",40],["50",50],["60",60],["70",70],["80",80],["90",90],["100",100],["110",110],["120",120]],{} ,class: 'form-control custom-select', id: 'shop_wait_time'
         .action
           = f.submit nil, class: 'btn btn-primary'
-
     br
-
-    h3
-      = shop.reservations.yet.count
-      | 組
-      = shop.total_people_number
-      | 人待ち
-    h4
-      strong
-        | 設定予約時間：
-        = shop.set_expected.to_s(:ja)
-
-    table.table
-      tbody
-        tr
-          th= Shop.human_attribute_name(:place)
-          td= shop.place
 
   .col-lg-12
     .inline-right = link_to 'リセット', reset_shop_path(shop), method: :delete, data: { confirm: "#{shop.name}の予約状況をリセットします。よろしいですか？" }, class: 'btn btn-danger mr-3'

@@ -1,7 +1,7 @@
 .row
   .col-lg-12
-    h3.text-center 予約できるお店一覧
+    h3.text-center.text-muted 予約できるお店一覧
   .col-lg-12
     = render partial: 'search', locals: { q: @q }
-  .col-lg-12
+  .col-lg-12.
     = render partial: 'display', locals: { shops: @shops }

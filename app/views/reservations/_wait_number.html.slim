@@ -21,7 +21,7 @@ script[src="https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_API_KEY']}&ca
 
 .row
   .col-lg-6.col-xs-12
-    h2 = shop.name
+    h3.text-muted = shop.name
     - if shop.image.attached?
       = image_tag shop.image, class:"management-img"
     - else

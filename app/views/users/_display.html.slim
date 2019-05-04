@@ -9,8 +9,8 @@
               = image_tag 'noimage.png', class:"card-img-top"
           .card-body
             h6
-              strong = shop.name
-            h6.text-muted.inline-left = shop.place
+              strong = shop.name.truncate(20)
+            h6.text-muted.inline-left = shop.place.truncate(18)
             h6.inline-right
               = shop.wait_time
               | 分

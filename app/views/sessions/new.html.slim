@@ -1,4 +1,4 @@
-h3 ログイン
+h3.text-center.text-muted ログイン
 
 = form_with scope: :session, local: true do |f|
   .form-group
@@ -7,10 +7,10 @@ h3 ログイン
   .form-group
     = f.label :password, 'パスワード'
     = f.password_field :password, class: 'form-control', id: 'session_password'
-  = f.submit 'ログインする', class: 'btn btn-primary'
+  .text-center = f.submit 'ログインする', class: 'btn btn-primary'
 
 br
 
-= link_to '/auth/twitter', class: "btn btn-social btn-twitter" do
+.inline-right = link_to '/auth/twitter', class: "btn btn-social btn-twitter" do
   span.fa.fa-twitter
   div Twitterログイン
