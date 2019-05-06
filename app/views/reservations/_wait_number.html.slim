@@ -11,9 +11,7 @@ javascript:
         zoom: 15
         });
         var marker = new google.maps.Marker({ map: map, position: results[0].geometry.location });
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      } 
+      }
     });
   }
 
@@ -26,7 +24,8 @@ script[src="https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_API_KEY']}&ca
       = image_tag shop.image, class:"management-img"
     - else
       = image_tag 'noimage.png', class:"management-img"
-  .col-lg-5.col-xs-12.inline-right
-    #map
-    .text-center
-      h5 = shop.place
+  - if shop.place.present?
+    .col-lg-5.col-xs-12.inline-right
+      #map
+      .text-center
+        h5 = shop.place
