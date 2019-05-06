@@ -22,24 +22,26 @@ table.table.table-hover
               button.btn.btn-outline-secondary[type="button" data-toggle="modal" data-target="#change-time#{reservation.id}"]
                   | 時間変更
 
-        .modal.fade[id="change-time#{reservation.id}"tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"]
-          .modal-dialog.modal-lg[role="document"]
-            .modal-content
-              .modal-header.modal-change-time
-                h5.modal-title 予約時間の変更
-                button.close[type="button" data-dismiss="modal" aria-label="Close"]
-                  span[aria-hidden="true"]
-                    | &times;
-              .modal-body.modal-change-time
-                = form_with model: reservation, url: [reservation.shop, reservation], local: true do |f|
-                  .form-inline
-                    .form-group
-                      = f.datetime_select :reserve_on, {}, class: 'form-control custom-select inline-ajust' 
-                    = f.submit '変更する', data: { confirm: "#{@shop.set_expected.to_s(:ja)}で予約をお取りします。よろしいですか?"}, class: 'btn btn-outline-light btn-change-time'
-                  br
-                  p 時間を変更すると、予約者にメールで通知されます
-              .modal-footer.modal-change-time
-                button.btn.btn-outline-light[type="button" data-dismiss="modal"]
-                  | Close
+- @reservations.yet.each do |reservation|
+  .modal.fade[id="change-time#{reservation.id}"tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true"]
+    .modal-dialog.modal-lg[role="document"]
+      .modal-content
+        .modal-header.modal-change-time
+          h5.modal-title 予約時間の変更
+          button.close[type="button" data-dismiss="modal" aria-label="Close"]
+            span[aria-hidden="true"]
+              | &times;
+        .modal-body.modal-change-time
+          = form_with model: reservation, url: [reservation.shop, reservation], local: true do |f|
+            .form-inline
+              .form-group
+                = f.datetime_select :reserve_on, {}, class: 'form-control custom-select inline-ajust' 
+              .form-group
+                = f.submit '変更する',class: 'btn btn-outline-light btn-change-time'
+            br
+            p 時間を変更すると、予約者にメールで通知されます
+        .modal-footer.modal-change-time
+          button.btn.btn-outline-light[type="button" data-dismiss="modal"]
+            | Close
 
 = render partial: 'link', locals: { shop: @shop }

@@ -1,7 +1,31 @@
 .row
   .col-lg-12
-    h2.inline-left
+    h3.text-center.text-muted
       = @user.name
       | さんの詳細情報
 
-= render partial: 'form', locals: { user: @user }
+- if @user.errors.present?
+  .alert.alert-warning
+    ul#error_explanation
+      - @user.errors.full_messages.each do |message|
+        li = message
+
+= form_with model: @user, local: true do |f|
+  .form-group
+    = f.label :name, '名前'
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :email, 'メールアドレス'
+    = f.text_field :email, class: 'form-control'
+  p
+    button[type="button" class="btn btn-outline-secondary" data-toggle="collapse" data-target="#password-form" aria-expanded="false" aria-controls="collapseExample"]
+      span.fa.fa-chevron-down パスワードの変更
+  .collapse#password-form
+    .card.card-body
+      .form-group
+        = f.label :password, '新しいパスワード'
+        = f.password_field :password, class: 'form-control'
+      .form-group
+        = f.label :password_confirmation, '新しいパスワード（確認）'
+        = f.password_field :password_confirmation, class: 'form-control'
+  .text-center = f.submit '登録する',class: 'btn btn-primary'
