@@ -1,0 +1,20 @@
+.row
+  - shops.each do |shop|
+    .col-lg-3.col-md-4.col-sm-6
+      .card
+        = link_to shop_path(shop)
+          - if shop.image.attached?
+            = image_tag shop.image, class:"card-img-top"
+          - else
+            = image_tag 'noimage.png', class:"card-img-top"
+        .card-body
+          h6
+            strong = shop.name.truncate(12)
+          h6.text-muted.inline-left = shop.place.truncate(10)
+          h6.inline-right
+            = shop.wait_time
+            | 分
+  .col-lg-12
+    .p-top__paginate
+      = paginate shops
+  

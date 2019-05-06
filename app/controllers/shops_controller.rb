@@ -10,7 +10,7 @@ class ShopsController < ApplicationController
 
   def my_shop
     @q = Shop.where(user_id: current_user.id).ransack(params[:q])
-    @shops = @q.result(distinct: true).page(params[:page]).per(4)
+    @shops = @q.result(distinct: true).page(params[:page]).per(12)
   end
 
   def show
