@@ -49,7 +49,7 @@ class ShopsController < ApplicationController
 
   def destroy
     @shop.destroy
-    redirect_to my_index_shops_url, notice: "#{@shop.name}を削除しました"
+    redirect_to my_shop_shops_url, notice: "#{@shop.name}を削除しました"
   end
 
   def reset
