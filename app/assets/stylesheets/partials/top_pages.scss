@@ -16,27 +16,17 @@
 .btn-toppage {
   color: rgba(255, 255, 255, 0.7);
   border-color: rgba(255, 255, 255, 0.7);
+  margin-top: 10px;
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+    border-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(39, 37, 37, 0.7);
+  }
 }
 
-.btn-toppage:hover {
-  color: rgba(255, 255, 255, 0.7);
-  border-color: rgba(255, 255, 255, 0.7);
-  background-color: rgba(39, 37, 37, 0.7);
+.btn-simple {
+  margin-top: 30px;
 }
-
 .alert-toppage{
   margin-bottom: 32px;
 }
-
-.a {
-  margin-top : 10px ;
-}
-
-.b {
-  margin-top  : 10px ;
-}
-
-.c {
-  margin-top  : 10px ;
-}
-

@@ -8,7 +8,7 @@
         strong.h1.toppage-character Noline
         br
         h3.toppage-character 行列をなくそう
-      .offset-lg-3.col-lg-2.col-sm-6.text-center.a
+      .offset-lg-3.col-lg-2.col-sm-6.text-center
         = link_to '新規登録', new_user_path, class: 'btn btn-outline-secondary btn-toppage' 
       .col-lg-2.col-sm-6.text-center.b
         = link_to 'ログイン', login_path, class: 'btn btn-outline-secondary btn-toppage'
@@ -16,6 +16,11 @@
         = link_to '/auth/twitter', class: "btn btn-social btn-outline-secondary btn-toppage" do
           span.fa.fa-twitter
           div Twitterログイン
+      .col-lg-12.text-center
+        = form_with(scope: :session, url: login_path, local: true) do |f|
+          = f.hidden_field :email, :value => 'test@gmail.com'
+          = f.hidden_field :password, :value => 'password'
+          .text-center = f.submit 'かんたんログイン', class: 'btn btn-outline-secondary btn-toppage btn-simple'
 .container
   .row
     .col-lg-6.col-xs-12

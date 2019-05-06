@@ -11,6 +11,13 @@ h3.text-center.text-muted ログイン
 
 br
 
-.inline-right = link_to '/auth/twitter', class: "btn btn-social btn-twitter" do
-  span.fa.fa-twitter
-  div Twitterログイン
+.text-right
+  = link_to '/auth/twitter', class: "btn btn-social btn-twitter" do
+    span.fa.fa-twitter
+    div Twitterログイン
+
+.text-right
+  = form_with(scope: :session, url: login_path, local: true) do |f|
+    = f.hidden_field :email, :value => 'test@gmail.com'
+    = f.hidden_field :password, :value => 'password'
+    = f.submit 'かんたんログイン', class: 'btn btn-secondary btn-test'
