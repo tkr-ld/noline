@@ -8,6 +8,9 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if current_user.email == 'test@gmail.com'
+      redirect_to root_url
+    end
   end
 
   def create

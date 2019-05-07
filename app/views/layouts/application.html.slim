@@ -45,8 +45,9 @@ html
                       = current_user.name
                     div.dropdown.show
                       div.dropdown-menu
-                        = link_to 'ユーザー設定', edit_user_path(current_user), class: 'dropdown-item'
-                        div.dropdown-divider
+                        - unless current_user.email=='test@gmail.com'
+                          = link_to 'ユーザー設定', edit_user_path(current_user), class: 'dropdown-item'
+                          div.dropdown-divider
                         = link_to 'ログアウト', logout_path, method: :delete, class: 'dropdown-item'
               - else
                 li.nav-item= link_to '新規登録', new_user_path, class: 'nav-link'     
