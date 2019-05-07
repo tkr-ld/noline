@@ -16,5 +16,5 @@
           = f.search_field :place_cont, class: 'form-control'
       .text-center
           = f.submit class: 'btn btn-outline-primary'
-    .btn.btn-outline-primary = sort_link(@q, :created_at, default_order: :desc)
+    .btn.btn-outline-primary = sort_link(@q, :created_at)
     = render partial: 'layouts/display', locals: { shops: @shops }
