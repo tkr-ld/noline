@@ -54,3 +54,32 @@ table.table-hover {
   border-color: #0068b7;
 }
 
+th {
+	background-color: white;
+}
+.normal {
+	background-color: white;
+}
+
+.normal:hover {
+		background-color: rgb(224, 222, 222);
+}
+
+.red {
+	background-color: rgb(243, 127, 139);
+	&:hover {
+		background-color: rgb(255, 91, 107);
+	}
+}
+
+.blue {
+	background-color: rgb(146, 146, 252);
+	.btn-outline-secondary {
+		color : white;
+		border-color: white;
+	}
+	&:hover {
+		background-color: rgb(115, 115, 250);
+	}
+}
+

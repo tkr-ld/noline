@@ -3,6 +3,18 @@
     h3.text-center.text-muted 自分のお店一覧
     .inline-right = link_to 'お店の追加', new_shop_path, class: 'btn btn-primary'
   .col-lg-12
-    = render partial: 'search', locals: { q: @q }
-  .col-lg-12
+    = search_form_for @q, url: my_shop_shops_path, class: 'mb-5' do |f|
+      .form-group.row
+        .col-lg-1.offset-lg-2
+          strong = f.label :name_cont, '店名', class: 'col-form-label'
+        .col-lg-6
+          = f.search_field :name_cont, class: 'form-control'
+      .form-group.row
+        .col-lg-1.offset-lg-2
+          strong = f.label :place_cont, '場所', class: 'col-form-label'
+        .col-lg-6
+          = f.search_field :place_cont, class: 'form-control'
+      .text-center
+          = f.submit class: 'btn btn-outline-primary'
+    .btn.btn-outline-primary = sort_link(@q, :created_at)
     = render partial: 'layouts/display', locals: { shops: @shops }
