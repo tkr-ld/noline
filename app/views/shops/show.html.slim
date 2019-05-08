@@ -1,6 +1,6 @@
 = render partial: 'management', locals: { shop: @shop }
     
-table.table.table-hover
+table.table
   thead.thead-default
     tr
       th= Reservation.human_attribute_name(:reserve_on)
@@ -10,7 +10,7 @@ table.table.table-hover
       th
     tbody
       - @reservations.yet.each do |reservation|
-        tr
+        tr class="#{reservation.divide_time if reservation.divide_time}"
           td= reservation.reserve_on.to_s(:ja)
           td= reservation.user.name
           td= reservation.people_number
