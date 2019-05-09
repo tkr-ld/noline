@@ -34,6 +34,43 @@ body {
 
 .modal-how-to {
   color: #d0d0d0;
-  background-color: #00334E;
-  border-color: #00334E;
+  background-color:teal;
+  border-color: teal;
+  color: white;
+}
+
+.blue-description {
+  display: inline-block;
+  font-weight: normal;
+  padding-bottom: 5px;
+  position: relative;
+  padding-left:150px;
+}
+
+.blue-description:before {
+  background: rgb(146, 146, 252);
+  content: "";
+  height: 15px;
+  width: 150px;
+  left: 0;
+  position: absolute;
+  top: 3px;
+}
+
+.red-description {
+  display: inline-block;
+  font-weight: normal;
+  padding-bottom: 5px;
+  position: relative;
+  padding-left:150px;
+}
+
+.red-description:before {
+  background: rgb(243, 127, 139);
+  content: "";
+  height: 15px;
+  width: 150px;
+  left: 0;
+  position: absolute;
+  top: 3px;
 }
